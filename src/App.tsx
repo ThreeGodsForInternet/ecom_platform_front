@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { routes } from './routes';
 
-import './App.css';
+const router = createBrowserRouter(routes);
 
 function App() {
-  return (
-    <>
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
