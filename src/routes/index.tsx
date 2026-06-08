@@ -17,6 +17,26 @@ export const routes = [
         index: true,
         element: <Home />,
       },
+      {
+        path: '/products',
+        element: <ProductList />,
+      },
+      {
+        path: '/products/:id',
+        element: <ProductDetail />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
+      {
+        path: '/order',
+        element: <Order />,
+      },
+      {
+        path: '/user',
+        element: <UserProfile />,
+      },
     ],
   },
   {

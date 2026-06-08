@@ -1,7 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { ShoppingCart, Heart, Share2, Star, Truck, ShieldCheck, RotateCcw, ChevronRight } from 'lucide-react';
-import { mockProducts } from '../data/mockProducts';
+import {
+  ShoppingCart,
+  Heart,
+  Share2,
+  Star,
+  Truck,
+  ShieldCheck,
+  RotateCcw,
+  ChevronRight,
+} from 'lucide-react';
+import { mockProducts } from '../mockdata/mockProducts';
 import { useCartStore } from '../stores/cartStore';
 import ProductCard from '../components/product/ProductCard';
 
@@ -22,7 +31,9 @@ export default function ProductDetail() {
         <div className="text-6xl mb-4">😕</div>
         <h2 className="text-2xl font-bold mb-2">商品不存在</h2>
         <p className="text-base-content/50 mb-4">该商品可能已下架或链接错误</p>
-        <Link to="/products" className="btn btn-primary">浏览其他商品</Link>
+        <Link to="/products" className="btn btn-primary">
+          浏览其他商品
+        </Link>
       </div>
     );
   }
@@ -58,9 +69,13 @@ export default function ProductDetail() {
     <div className="max-w-7xl mx-auto px-4 py-4">
       {/* 面包屑 */}
       <div className="text-sm text-base-content/50 mb-4 flex items-center gap-1">
-        <Link to="/" className="hover:text-primary">首页</Link>
+        <Link to="/" className="hover:text-primary">
+          首页
+        </Link>
         <ChevronRight size={14} />
-        <Link to="/products" className="hover:text-primary">商品列表</Link>
+        <Link to="/products" className="hover:text-primary">
+          商品列表
+        </Link>
         <ChevronRight size={14} />
         <span className="text-base-content">{product.name}</span>
       </div>
@@ -69,14 +84,23 @@ export default function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 rounded-box p-4 md:p-6">
         {/* 左侧：商品图片 */}
         <div className="aspect-square bg-base-200 rounded-xl flex items-center justify-center text-8xl text-base-content/15">
-          {product.categoryId === 'c1' ? '📱' :
-           product.categoryId === 'c2' ? '💻' :
-           product.categoryId === 'c3' ? '🏠' :
-           product.categoryId === 'c4' ? '👟' :
-           product.categoryId === 'c5' ? '🍪' :
-           product.categoryId === 'c6' ? '✨' :
-           product.categoryId === 'c7' ? '⚽' :
-           product.categoryId === 'c8' ? '📖' : '📦'}
+          {product.categoryId === 'c1'
+            ? '📱'
+            : product.categoryId === 'c2'
+              ? '💻'
+              : product.categoryId === 'c3'
+                ? '🏠'
+                : product.categoryId === 'c4'
+                  ? '👟'
+                  : product.categoryId === 'c5'
+                    ? '🍪'
+                    : product.categoryId === 'c6'
+                      ? '✨'
+                      : product.categoryId === 'c7'
+                        ? '⚽'
+                        : product.categoryId === 'c8'
+                          ? '📖'
+                          : '📦'}
         </div>
 
         {/* 右侧：商品信息 */}
@@ -87,15 +111,15 @@ export default function ProductDetail() {
             {product.isHot && <span className="badge badge-error badge-sm">热卖</span>}
             {discount > 0 && <span className="badge badge-warning badge-sm">-{discount}%</span>}
             {product.tags.map((t) => (
-              <span key={t} className="badge badge-outline badge-sm">{t}</span>
+              <span key={t} className="badge badge-outline badge-sm">
+                {t}
+              </span>
             ))}
           </div>
 
           {/* 名称 */}
           <h1 className="text-xl md:text-2xl font-bold">{product.name}</h1>
-          {product.subtitle && (
-            <p className="text-sm text-base-content/50">{product.subtitle}</p>
-          )}
+          {product.subtitle && <p className="text-sm text-base-content/50">{product.subtitle}</p>}
 
           {/* 价格 */}
           <div className="flex items-baseline gap-3 p-3 bg-error/5 rounded-lg">
@@ -106,7 +130,9 @@ export default function ProductDetail() {
               </span>
             )}
             {discount > 0 && (
-              <span className="text-sm text-error">省¥{product.originalPrice! - product.price}</span>
+              <span className="text-sm text-error">
+                省¥{product.originalPrice! - product.price}
+              </span>
             )}
           </div>
 
@@ -117,7 +143,10 @@ export default function ProductDetail() {
               <span>{product.rating}</span>
               <span>({product.reviewCount}评价)</span>
             </div>
-            <span>已售 {product.sales > 10000 ? `${(product.sales / 10000).toFixed(1)}万` : product.sales}</span>
+            <span>
+              已售{' '}
+              {product.sales > 10000 ? `${(product.sales / 10000).toFixed(1)}万` : product.sales}
+            </span>
           </div>
 
           <div className="divider my-0" />
@@ -161,9 +190,9 @@ export default function ProductDetail() {
             <button className="btn btn-primary flex-1 gap-2" onClick={handleAddToCart}>
               <ShoppingCart size={18} /> 加入购物车
             </button>
-            <button className="btn btn-outline btn-square">
+            {/* <button className="btn btn-outline btn-square">
               <Heart size={18} />
-            </button>
+            </button> */}
             <button className="btn btn-outline btn-square">
               <Share2 size={18} />
             </button>
@@ -171,9 +200,15 @@ export default function ProductDetail() {
 
           {/* 服务承诺 */}
           <div className="flex flex-wrap gap-4 text-xs text-base-content/40 mt-2">
-            <span className="flex items-center gap-1"><Truck size={14} /> 全国包邮</span>
-            <span className="flex items-center gap-1"><ShieldCheck size={14} /> 正品保障</span>
-            <span className="flex items-center gap-1"><RotateCcw size={14} /> 7天退换</span>
+            <span className="flex items-center gap-1">
+              <Truck size={14} /> 全国包邮
+            </span>
+            <span className="flex items-center gap-1">
+              <ShieldCheck size={14} /> 正品保障
+            </span>
+            <span className="flex items-center gap-1">
+              <RotateCcw size={14} /> 7天退换
+            </span>
           </div>
         </div>
       </div>
@@ -187,7 +222,11 @@ export default function ProductDetail() {
               className={`tab tab-lg ${activeTab === tab ? 'tab-active' : ''}`}
               onClick={() => setActiveTab(tab)}
             >
-              {tab === 'detail' ? '商品详情' : tab === 'specs' ? '规格参数' : `商品评价(${product.reviewCount})`}
+              {tab === 'detail'
+                ? '商品详情'
+                : tab === 'specs'
+                  ? '规格参数'
+                  : `商品评价(${product.reviewCount})`}
             </button>
           ))}
         </div>
@@ -224,7 +263,11 @@ export default function ProductDetail() {
                     <Star
                       key={s}
                       size={16}
-                      className={s <= Math.round(product.rating) ? 'text-warning fill-warning' : 'text-base-300'}
+                      className={
+                        s <= Math.round(product.rating)
+                          ? 'text-warning fill-warning'
+                          : 'text-base-300'
+                      }
                     />
                   ))}
                 </div>

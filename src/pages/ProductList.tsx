@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Filter, X } from 'lucide-react';
-import { mockProducts } from '../data/mockProducts';
-import { mockCategories } from '../data/mockCategories';
+import { mockProducts } from '../mockdata/mockProducts';
+import { mockCategories } from '../mockdata/mockCategories';
 import ProductCard from '../components/product/ProductCard';
 import EmptyState from '../components/common/EmptyState';
 import type { ProductFilter } from '../types';
@@ -44,7 +44,7 @@ export default function ProductList() {
         (p) =>
           p.name.toLowerCase().includes(kw) ||
           p.description.toLowerCase().includes(kw) ||
-          p.tags.some((t) => t.toLowerCase().includes(kw)),
+          p.tags.some((t) => t.toLowerCase().includes(kw))
       );
     }
 
@@ -78,8 +78,7 @@ export default function ProductList() {
         break;
       case 'newest':
         list.sort(
-          (a, b) =>
-            (new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()) * order,
+          (a, b) => (new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()) * order
         );
         break;
       case 'sales':
@@ -91,18 +90,20 @@ export default function ProductList() {
     return list;
   }, [filter, tag]);
 
-  const currentCategory = categoryId
-    ? mockCategories.find((c) => c.id === categoryId)
-    : null;
+  const currentCategory = categoryId ? mockCategories.find((c) => c.id === categoryId) : null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-4">
       {/* 面包屑 / 标题 */}
       <div className="flex items-center flex-wrap gap-2 text-sm text-base-content/50 mb-4">
-        <Link to="/" className="hover:text-primary">首页</Link>
+        <Link to="/" className="hover:text-primary">
+          首页
+        </Link>
         <span>/</span>
         {currentCategory ? (
-          <span className="text-base-content">{currentCategory.icon} {currentCategory.name}</span>
+          <span className="text-base-content">
+            {currentCategory.icon} {currentCategory.name}
+          </span>
         ) : keyword ? (
           <span className="text-base-content">搜索 "{keyword}"</span>
         ) : tag ? (
@@ -128,27 +129,19 @@ export default function ProductList() {
           {SORT_OPTIONS.map((opt) => (
             <button
               key={opt.key}
-              className={`btn btn-xs ${
-                filter.sortBy === opt.key ? 'btn-primary' : 'btn-ghost'
-              }`}
+              className={`btn btn-xs ${filter.sortBy === opt.key ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() =>
                 setFilter((f) => ({
                   ...f,
                   sortBy: opt.key,
                   sortOrder:
-                    f.sortBy === opt.key
-                      ? f.sortOrder === 'asc'
-                        ? 'desc'
-                        : 'asc'
-                      : 'desc',
+                    f.sortBy === opt.key ? (f.sortOrder === 'asc' ? 'desc' : 'asc') : 'desc',
                 }))
               }
             >
               {opt.label}
               {filter.sortBy === opt.key && (
-                <span className="text-[10px]">
-                  {filter.sortOrder === 'asc' ? '↑' : '↓'}
-                </span>
+                <span className="text-[10px]">{filter.sortOrder === 'asc' ? '↑' : '↓'}</span>
               )}
             </button>
           ))}
@@ -159,7 +152,13 @@ export default function ProductList() {
           <button
             className="btn btn-ghost btn-xs text-error"
             onClick={() =>
-              setFilter({ ...filter, keyword: '', categoryId: '', minPrice: undefined, maxPrice: undefined })
+              setFilter({
+                ...filter,
+                keyword: '',
+                categoryId: '',
+                minPrice: undefined,
+                maxPrice: undefined,
+              })
             }
           >
             <X size={14} /> 清除筛选
