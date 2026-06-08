@@ -1,12 +1,22 @@
+import { Suspense, lazy } from 'react';
 import MainLayout from '../layouts/MainLayout';
-import Home from '../pages/Home';
-import ProductList from '../pages/ProductList';
-import ProductDetail from '../pages/ProductDetail';
-import Cart from '../pages/Cart';
-import Order from '../pages/Order';
-import Login from '../pages/Login';
-import UserProfile from '../pages/UserProfile';
-import NotFound from '../pages/NotFound';
+
+// 懒加载页面组件
+const Home = lazy(() => import('../pages/Home'));
+const ProductList = lazy(() => import('../pages/ProductList'));
+const ProductDetail = lazy(() => import('../pages/ProductDetail'));
+const Cart = lazy(() => import('../pages/Cart'));
+const Order = lazy(() => import('../pages/Order'));
+const Login = lazy(() => import('../pages/Login'));
+const UserProfile = lazy(() => import('../pages/UserProfile'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+
+// 加载中组件
+const LazyLoader = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+);
 
 export const routes = [
   {
@@ -15,36 +25,68 @@ export const routes = [
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: '/products',
-        element: <ProductList />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <ProductList />
+          </Suspense>
+        ),
       },
       {
         path: '/products/:id',
-        element: <ProductDetail />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <ProductDetail />
+          </Suspense>
+        ),
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: '/order',
-        element: <Order />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Order />
+          </Suspense>
+        ),
       },
       {
         path: '/user',
-        element: <UserProfile />,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <UserProfile />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/login',
-    element: <Login />,
+    element: (
+      <Suspense fallback={<LazyLoader />}>
+        <Login />
+      </Suspense>
+    ),
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: (
+      <Suspense fallback={<LazyLoader />}>
+        <NotFound />
+      </Suspense>
+    ),
   },
 ];

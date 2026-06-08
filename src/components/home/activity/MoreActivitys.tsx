@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { MoreHorizontal } from 'lucide-react';
 
 interface ActivityItem {
   id: string;
