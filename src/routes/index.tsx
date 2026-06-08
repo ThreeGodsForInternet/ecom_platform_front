@@ -1,7 +1,8 @@
 import { Suspense, lazy } from 'react';
 import MainLayout from '../layouts/MainLayout';
+import AdminLayout from '../components/admin/AdminLayout';
 
-// 懒加载页面组件
+// 懒加载前台页面组件
 const Home = lazy(() => import('../pages/Home'));
 const ProductList = lazy(() => import('../pages/ProductList'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));
@@ -11,6 +12,11 @@ const Login = lazy(() => import('../pages/Login'));
 const UserProfile = lazy(() => import('../pages/UserProfile'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
+// 懒加载后台页面组件
+const DashboardPage = lazy(() => import('../pages/admin/dashboard/DashboardPage'));
+const UserListPage = lazy(() => import('../pages/admin/users/UserListPage'));
+const ProductListPage = lazy(() => import('../pages/admin/products/ProductListPage'));
+
 // 加载中组件
 const LazyLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -19,6 +25,7 @@ const LazyLoader = () => (
 );
 
 export const routes = [
+  // 前台路由
   {
     path: '/',
     element: <MainLayout />,
@@ -81,6 +88,48 @@ export const routes = [
       </Suspense>
     ),
   },
+
+  // 后台路由
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <DashboardPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/admin/dashboard',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <DashboardPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/admin/users',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <UserListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/admin/products',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <ProductListPage />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // 404
   {
     path: '*',
     element: (
