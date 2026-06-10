@@ -12,6 +12,9 @@ const Login = lazy(() => import('../pages/Login'));
 const UserProfile = lazy(() => import('../pages/UserProfile'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
+// 懒加载用户中心页面组件
+const UserCenter = lazy(() => import('../pages/UserCenter'));
+
 // 懒加载后台页面组件
 const DashboardPage = lazy(() => import('../pages/admin/dashboard/DashboardPage'));
 const UserListPage = lazy(() => import('../pages/admin/users/UserListPage'));
@@ -70,14 +73,6 @@ export const routes = [
           </Suspense>
         ),
       },
-      {
-        path: '/user',
-        element: (
-          <Suspense fallback={<LazyLoader />}>
-            <UserProfile />
-          </Suspense>
-        ),
-      },
     ],
   },
   {
@@ -85,6 +80,16 @@ export const routes = [
     element: (
       <Suspense fallback={<LazyLoader />}>
         <Login />
+      </Suspense>
+    ),
+  },
+
+  // 用户中心路由
+  {
+    path: '/user',
+    element: (
+      <Suspense fallback={<LazyLoader />}>
+        <UserCenter />
       </Suspense>
     ),
   },
