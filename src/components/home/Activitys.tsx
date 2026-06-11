@@ -27,7 +27,7 @@ export default function Activitys() {
             <FlashSaleSection />
           </div>
           {/* 右侧：活动入口 + 榜单 */}
-          <div className="space-y-6">
+          <div className="space-y-6 h-full">
             {/* 活动入口 */}
             <FeatureGrid />
           </div>
