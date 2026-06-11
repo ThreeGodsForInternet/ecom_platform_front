@@ -11,12 +11,11 @@ export interface ApiResponse<T = any> {
   code: number;
   message: string;
   data: T;
-  success: boolean;
 }
 
 // 创建 axios 实例
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
@@ -26,7 +25,7 @@ const instance: AxiosInstance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 从 localStorage 获取 token
+    // 从 localStorage 获取 token -- 待完善
     const token = localStorage.getItem('token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -42,9 +41,9 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>) => {
-    const { code, message, data, success } = response.data;
+    const { code, message } = response.data;
 
-    if (success || code === 200) {
+    if (message === 'success' || code === 200) {
       return response;
     } else {
       // 统一错误提示

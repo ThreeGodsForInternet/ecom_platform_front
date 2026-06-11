@@ -31,7 +31,6 @@
   --color-base-100: #1d232a;
   --color-base-200: #191e24;
   --color-base-300: #15191e;
-  --color-base-content: #a6adbb;
 }
 
 /* 全局基础样式 */
@@ -52,13 +51,13 @@ body {
    ═══════════════════════════════════════ */
 html,
 body {
-  scrollbar-width: none;           /* Firefox */
-  -ms-overflow-style: none;        /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / Edge */
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none;                   /* Chrome / Safari */
+  display: none; /* Chrome / Safari */
 }
 
 /* ═══════════════════════════════════════
