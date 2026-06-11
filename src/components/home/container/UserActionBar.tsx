@@ -8,7 +8,7 @@ export default function UserActionBar() {
   const navigate = useNavigate();
 
   const actions = [
-    { icon: Crown, name: '会员中心', path: '/vip' },
+    { icon: Crown, name: '会员中心', path: '/user' },
     { icon: Ticket, name: '优惠券', path: '/coupons' },
     { icon: FileText, name: '我的订单', path: '/order' },
     { icon: Heart, name: '我的收藏', path: '/favorites', badge: 2 },

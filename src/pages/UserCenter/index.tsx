@@ -12,7 +12,7 @@ export default function UserCenter() {
       <div className="max-w-7xl mx-auto">
         <div className="flex">
           {/* 左侧侧边栏 */}
-          <UserSidebar />
+          {/* <UserSidebar /> */}
 
           {/* 右侧主内容区 */}
           <div className="flex-1 p-6">

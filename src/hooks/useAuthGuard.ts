@@ -12,12 +12,9 @@ export function useAuthGuard(options: AuthGuardOptions = {}) {
   const publicPaths = options.publicPaths ?? DEFAULT_PUBLIC_PATHS;
   const isPublic = publicPaths.includes(location.pathname);
   const authed = hasToken();
-  // const AuthInfo = authStore((state)=> )
   return {
     authed,
     isPublic,
     pathname: location.pathname,
   };
 }
-
-// 权限守卫 - 根据用户权限判断是否可以访问 /admin

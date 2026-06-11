@@ -6,26 +6,26 @@
  * DELETE /user-address/delete/{id} 删除地址
  */
 import request from '../utils/request'
-import type { ApiResponse, UserAddress } from './types'
+import type { UserAddress } from './types'
 
 const { get, post, put, delete: del } = request
 
 /** 获取用户地址列表 */
 export const getUserAddressList = () => {
-  return get<ApiResponse<UserAddress[]>>('/user-address/list')
+  return get<UserAddress[]>('/user-address/list')
 }
 
 /** 新增用户地址 */
 export const addUserAddress = (data: UserAddress) => {
-  return post<ApiResponse<string>>('/user-address/add', data)
+  return post<string>('/user-address/add', data)
 }
 
 /** 更新用户地址 */
 export const updateUserAddress = (data: UserAddress) => {
-  return put<ApiResponse<string>>('/user-address/update', data)
+  return put<string>('/user-address/update', data)
 }
 
 /** 删除用户地址 */
 export const deleteUserAddress = (id: number) => {
-  return del<ApiResponse<string>>(`/user-address/delete/${id}`)
+  return del<string>(`/user-address/delete/${id}`)
 }
