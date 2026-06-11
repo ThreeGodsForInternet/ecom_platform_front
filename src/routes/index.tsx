@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import AdminLayout from '../components/admin/AdminLayout';
+import UserCenterLayout from '../components/userCenter/UserCenterLayout';
 
 // 懒加载前台页面组件
 const Home = lazy(() => import('../pages/Home'));
@@ -13,7 +14,23 @@ const UserProfile = lazy(() => import('../pages/UserProfile'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 // 懒加载用户中心页面组件
-const UserCenter = lazy(() => import('../pages/UserCenter'));
+const UserCenterHome = lazy(() => import('../pages/UserCenter'));
+const Profile = lazy(() => import('../pages/UserCenter/Profile'));
+const Member = lazy(() => import('../pages/UserCenter/Member'));
+const Services = lazy(() => import('../pages/UserCenter/Services'));
+const Points = lazy(() => import('../pages/UserCenter/Points'));
+const Coupons = lazy(() => import('../pages/UserCenter/Coupons'));
+const Gifts = lazy(() => import('../pages/UserCenter/Gifts'));
+const Addresses = lazy(() => import('../pages/UserCenter/Addresses'));
+const Browsing = lazy(() => import('../pages/UserCenter/Browsing'));
+const Orders = lazy(() => import('../pages/UserCenter/Orders'));
+const AfterSales = lazy(() => import('../pages/UserCenter/AfterSales'));
+const Store = lazy(() => import('../pages/UserCenter/Store'));
+const ThirdParty = lazy(() => import('../pages/UserCenter/ThirdParty'));
+const FollowShops = lazy(() => import('../pages/UserCenter/FollowShops'));
+const CustomerService = lazy(() => import('../pages/UserCenter/CustomerService'));
+const Account = lazy(() => import('../pages/UserCenter/Account'));
+const Settings = lazy(() => import('../pages/UserCenter/Settings'));
 
 // 懒加载后台页面组件
 const DashboardPage = lazy(() => import('../pages/admin/dashboard/DashboardPage'));
@@ -87,11 +104,145 @@ export const routes = [
   // 用户中心路由
   {
     path: '/user',
-    element: (
-      <Suspense fallback={<LazyLoader />}>
-        <UserCenter />
-      </Suspense>
-    ),
+    element: <UserCenterLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <UserCenterHome />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/profile',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/member',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Member />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/services',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Services />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/points',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Points />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/coupons',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Coupons />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/gifts',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Gifts />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/addresses',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Addresses />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/browsing',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Browsing />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/orders',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Orders />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/after-sales',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <AfterSales />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/store',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Store />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/third-party',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <ThirdParty />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/follow-shops',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <FollowShops />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/customer-service',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <CustomerService />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/account',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Account />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/user/settings',
+        element: (
+          <Suspense fallback={<LazyLoader />}>
+            <Settings />
+          </Suspense>
+        ),
+      },
+    ],
   },
 
   // 后台路由

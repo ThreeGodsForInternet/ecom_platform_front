@@ -1,36 +1,49 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
+/* ========== 全局强制使用浅色主题 ========== */
+:root {
+  data-theme: light;
+}
 
-/* DaisyUI 主题定制 — 京东红品牌色 */
-@plugin "daisyui/theme" {
-  name: 'light';
-  default: true;
+/* ========== DaisyUI 5.x + TailwindCSS 4.x 主题配置 ========== */
+/* @theme {
   --color-primary: #e4393c;
   --color-primary-content: #ffffff;
   --color-secondary: #f5a623;
   --color-secondary-content: #ffffff;
   --color-accent: #5a8def;
+  --color-accent-content: #ffffff;
+
   --color-base-100: #ffffff;
   --color-base-200: #f4f4f4;
   --color-base-300: #e5e5e5;
   --color-base-content: #333333;
+
   --color-info: #3b82f6;
+  --color-info-content: #ffffff;
   --color-success: #22c55e;
+  --color-success-content: #ffffff;
   --color-warning: #f59e0b;
+  --color-warning-content: #ffffff;
   --color-error: #ef4444;
+  --color-error-content: #ffffff;
+
   --radius-box: 0.5rem;
   --radius-btn: 0.5rem;
   --radius-field: 0.5rem;
-}
+} */
 
-@plugin "daisyui/theme" {
-  name: 'dark';
-  default: false;
-  --color-primary: #e4393c;
-  --color-primary-content: #ffffff;
-  --color-base-100: #1d232a;
-  --color-base-200: #191e24;
-  --color-base-300: #15191e;
+/* 确保 html 和 body 始终使用浅色主题 */
+html,
+body {
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  data-theme: light;
 }
 
 /* 全局基础样式 */

@@ -4,7 +4,11 @@ import { routes } from './routes';
 const router = createBrowserRouter(routes);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div data-theme="light">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;
