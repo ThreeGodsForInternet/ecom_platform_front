@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Crown, Ticket, FileText, Heart } from 'lucide-react';
+import { getToken } from '../../../utils/Token';
 // import { useAuthStore } from '../../../stores/authStore';
 
 export default function UserActionBar() {
@@ -28,8 +29,9 @@ export default function UserActionBar() {
             </button>
           </div>
         ) : ( */}
-          <div>
-            <p className="text-base-content/70 mb-3">Hi，欢迎来到米米乐</p>
+        <div>
+          <p className="text-base-content/70 mb-3">Hi，欢迎来到米米乐</p>
+          {!getToken() && (
             <div className="flex gap-3">
               <button onClick={() => navigate('/login')} className="btn btn-primary btn-sm px-6">
                 登录
@@ -38,7 +40,8 @@ export default function UserActionBar() {
                 注册
               </button>
             </div>
-          </div>
+          )}
+        </div>
         {/* )} */}
       </div>
 

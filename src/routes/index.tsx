@@ -1,7 +1,9 @@
 import { Suspense, lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import AdminLayout from '../components/admin/AdminLayout';
 import UserCenterLayout from '../components/userCenter/UserCenterLayout';
+import RequireAuth from '../components/common/RequireAuth';
 
 // 懒加载前台页面组件
 const Home = lazy(() => import('../pages/Home'));
@@ -49,7 +51,11 @@ export const routes = [
   // 前台路由
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <RequireAuth>
+        <MainLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
@@ -94,6 +100,10 @@ export const routes = [
     ],
   },
   {
+    path: '/home',
+    element: <Navigate to="/" replace />,
+  },
+  {
     path: '/login',
     element: (
       <Suspense fallback={<LazyLoader />}>
@@ -113,7 +123,11 @@ export const routes = [
   // 用户中心路由
   {
     path: '/user',
-    element: <UserCenterLayout />,
+    element: (
+      <RequireAuth>
+        <UserCenterLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
@@ -257,7 +271,11 @@ export const routes = [
   // 后台路由
   {
     path: '/admin',
-    element: <AdminLayout />,
+    element: (
+      <RequireAuth>
+        <AdminLayout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
