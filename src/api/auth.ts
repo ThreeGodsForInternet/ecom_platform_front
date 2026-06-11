@@ -3,17 +3,17 @@
  * POST /auth/login    登录
  * POST /auth/register  注册
  */
-import request from '../utils/request'
-import type { ApiResponse, LoginRequest, RegisterRequest, LoginResponse } from './types'
+import request from '../utils/request';
+import type { LoginRequest, RegisterRequest, LoginResponse } from './types';
 
-const { post } = request
+const { post } = request;
 
 /** 登录 */
-export const login = (data: LoginRequest) => {
-  return post<ApiResponse<LoginResponse>>('/auth/login', data)
-}
+export const Login = (data: LoginRequest) => {
+  return post<LoginResponse>('/auth/login', data);
+};
 
 /** 注册 */
-export const register = (data: RegisterRequest) => {
-  return post<ApiResponse<LoginResponse>>('/auth/register', data)
-}
+export const Register = (data: RegisterRequest) => {
+  return post<LoginResponse>('/auth/register', data);
+};

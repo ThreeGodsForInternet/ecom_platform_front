@@ -10,8 +10,9 @@ const ProductDetail = lazy(() => import('../pages/ProductDetail'));
 const Cart = lazy(() => import('../pages/Cart'));
 const Order = lazy(() => import('../pages/Order'));
 const Login = lazy(() => import('../pages/Login'));
-const UserProfile = lazy(() => import('../pages/UserProfile'));
+// const UserProfile = lazy(() => import('../pages/UserProfile'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+const Register = lazy(() => import('../pages/RegisterPage'));
 
 // 懒加载用户中心页面组件
 const UserCenterHome = lazy(() => import('../pages/UserCenter'));
@@ -97,6 +98,14 @@ export const routes = [
     element: (
       <Suspense fallback={<LazyLoader />}>
         <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/register',
+    element: (
+      <Suspense fallback={<LazyLoader />}>
+        <Register />
       </Suspense>
     ),
   },

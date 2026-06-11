@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Crown, Ticket, FileText, Heart } from 'lucide-react';
-import { useAuthStore } from '../../../stores/authStore';
+// import { useAuthStore } from '../../../stores/authStore';
 
 export default function UserActionBar() {
-  const { isLoggedIn, user, logout } = useAuthStore();
+  // const { isLoggedIn, user, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const actions = [
@@ -20,14 +20,14 @@ export default function UserActionBar() {
         <div className="w-16 h-16 bg-base-200 rounded-full flex items-center justify-center mb-3">
           <User size={40} className="text-base-content/40" />
         </div>
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? (
           <div>
             <p className="text-base-content font-medium">Hi，{user?.nickname}</p>
             <button onClick={logout} className="text-xs text-primary hover:underline mt-1">
               退出登录
             </button>
           </div>
-        ) : (
+        ) : ( */}
           <div>
             <p className="text-base-content/70 mb-3">Hi，欢迎来到米米乐</p>
             <div className="flex gap-3">
@@ -39,7 +39,7 @@ export default function UserActionBar() {
               </button>
             </div>
           </div>
-        )}
+        {/* )} */}
       </div>
 
       {/* 操作菜单 */}
