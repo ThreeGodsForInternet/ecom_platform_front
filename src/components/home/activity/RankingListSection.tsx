@@ -6,7 +6,7 @@ interface RankingItem {
   rank: number;
   name: string;
   price: number;
-  image: string;
+  imageUrl: string;
 }
 
 export default function RankingListSection() {
@@ -16,35 +16,28 @@ export default function RankingListSection() {
       rank: 1,
       name: 'iPhone 15 Pro Max',
       price: 9999,
-      image: '📱',
+      imageUrl: 'https://images.unsplash.com/photo-1592286927505-1def25115558?w=300&h=300&fit=crop',
     },
     {
       id: '2',
       rank: 2,
       name: 'MacBook Air M3',
       price: 8999,
-      image: '💻',
+      imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=300&fit=crop',
     },
     {
       id: '3',
       rank: 3,
       name: 'AirPods Pro 2',
       price: 1899,
-      image: '🎧',
+      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop',
     },
     {
       id: '4',
       rank: 4,
-      name: 'iPad Pro 12.9',
-      price: 8999,
-      image: '📱',
-    },
-    {
-      id: '5',
-      rank: 5,
       name: 'Apple Watch Ultra',
       price: 6499,
-      image: '🧭',
+      imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop',
     },
   ];
 
@@ -93,8 +86,8 @@ export default function RankingListSection() {
             </div>
 
             {/* 商品图片 */}
-            <div className="w-16 h-16 bg-base-200 rounded-lg flex items-center justify-center text-2xl">
-              {item.image}
+            <div className="w-16 h-16 bg-base-200 rounded-lg flex items-center justify-center text-2xl overflow-hidden">
+              <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
             </div>
 
             {/* 商品信息 */}

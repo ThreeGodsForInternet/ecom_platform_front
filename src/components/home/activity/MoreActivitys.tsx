@@ -4,7 +4,7 @@ interface ActivityItem {
   id: string;
   title: string;
   subtitle: string;
-  color: string;
+  backgroundImageUrl: string;
   link: string;
 }
 
@@ -14,28 +14,32 @@ export default function MoreActivitys() {
       id: '1',
       title: '拼团购',
       subtitle: '3人成团享优惠',
-      color: 'bg-gradient-to-r from-red-400 to-red-600',
+      backgroundImageUrl:
+        'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=400&h=300&fit=crop',
       link: '/group-buy',
     },
     {
       id: '2',
       title: '限时秒杀',
       subtitle: '整点开抢',
-      color: 'bg-gradient-to-r from-orange-400 to-orange-600',
+      backgroundImageUrl:
+        'https://images.unsplash.com/photo-1556740738-b6a63e27c800?w=400&h=300&fit=crop',
       link: '/flash-sale',
     },
     {
       id: '3',
       title: '满减活动',
       subtitle: '满300减50',
-      color: 'bg-gradient-to-r from-green-400 to-green-600',
+      backgroundImageUrl:
+        'https://images.unsplash.com/photo-1557821552-17105176677c?w=400&h=300&fit=crop',
       link: '/full-reduction',
     },
     {
       id: '4',
       title: '幸运抽奖',
       subtitle: '每日3次机会',
-      color: 'bg-gradient-to-r from-purple-400 to-purple-600',
+      backgroundImageUrl:
+        'https://images.unsplash.com/photo-1596394516093-501ba68352ba?w=400&h=300&fit=crop',
       link: '/lucky-draw',
     },
   ];
@@ -47,26 +51,24 @@ export default function MoreActivitys() {
           <Link
             key={activity.id}
             to={activity.link}
-            className="flex flex-col items-center p-4 rounded-xl hover:shadow-md transition-shadow"
+            className="relative flex flex-col items-center justify-center rounded-xl overflow-hidden hover:shadow-lg transition-shadow h-40 group"
           >
-            <div className={`w-16 h-16 ${activity.color} rounded-2xl flex items-center justify-center mb-3`}>
-              <span className="text-white text-2xl">🎉</span>
+            {/* 背景图片 */}
+            <div
+              className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+              style={{ backgroundImage: `url(${activity.backgroundImageUrl})` }}
+            />
+
+            {/* 遮罩层 */}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+
+            {/* 文字内容 */}
+            <div className="relative z-10 flex flex-col items-center text-center px-4">
+              <span className="text-white text-lg font-bold mb-1">{activity.title}</span>
+              <span className="text-white/80 text-xs">{activity.subtitle}</span>
             </div>
-            <span className="text-base font-medium text-base-content mb-1">{activity.title}</span>
-            <span className="text-xs text-base-content/60">{activity.subtitle}</span>
           </Link>
         ))}
-        {/* 更多活动 */}
-        {/* <Link
-          to="/activities"
-          className="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-dashed border-base-300 hover:border-primary hover:shadow-md transition-all"
-        >
-          <div className="w-16 h-16 bg-base-200 rounded-2xl flex items-center justify-center mb-3">
-            <MoreHorizontal size={32} className="text-base-content/40" />
-          </div>
-          <span className="text-base font-medium text-base-content mb-1">更多活动</span>
-          <span className="text-xs text-base-content/60">查看全部</span>
-        </Link> */}
       </div>
     </div>
   );

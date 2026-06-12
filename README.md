@@ -73,3 +73,6 @@ export default defineConfig([
   },
 ])
 ```
+
+
+路径 页面名称 功能 /user/profile Profile 个人信息编辑 /user/member Member 会员等级与权益 /user/services Services 会员服务 /user/points Points 积分管理 /user/coupons Coupons 优惠券管理 /user/gifts Gifts 礼品卡包 /user/addresses Addresses 收货地址管理 /user/browsing Browsing 浏览记录 /user/orders Orders 订单管理 /user/after-sales AfterSales 评价与晒单 /user/store Store 站点信通知 /user/third-party ThirdParty 第三方店铺 /user/follow-shops FollowShops 关注店铺 /user/customer-service CustomerService 客户中心 /user/account Account 账户中心 /user/settings Settings 系

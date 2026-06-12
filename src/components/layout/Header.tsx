@@ -4,10 +4,10 @@ import {
   Menu,
   Smartphone,
 } from 'lucide-react';
-import { useAuthStore } from '../../stores/authStore';
+// import { useAuthStore } from '../../stores/authStore';
 
 export default function Header() {
-  const { isLoggedIn, user, } = useAuthStore();
+  // const { isLoggedIn, user, } = useAuthStore();
 
   return (
     <header className="sticky top-0 z-50">
@@ -18,7 +18,7 @@ export default function Header() {
             {/* 左侧：欢迎语和登录注册 */}
             <div className="flex items-center gap-4">
               <span>您好，欢迎来到米米乐商城！</span>
-              {isLoggedIn ? (
+              {/* {isLoggedIn ? (
                 <span>
                   <span className="text-primary font-medium">{user?.nickname}</span>
                 </span>
@@ -32,7 +32,7 @@ export default function Header() {
                     免费注册
                   </Link>
                 </div>
-              )}
+              )} */}
             </div>
             {/* 右侧：快捷菜单 */}
             <div className="flex items-center gap-4">

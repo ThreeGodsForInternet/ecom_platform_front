@@ -19,7 +19,7 @@ export default function RecommendedSection() {
       name: '索尼 WH-1000XM5 无线降噪耳机',
       price: 2499,
       originalPrice: 2999,
-      image: '🎧',
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
       rating: 4.9,
       reviews: 2856,
       sales: 15890,
@@ -29,7 +29,7 @@ export default function RecommendedSection() {
       name: '戴森 V15 Detect 无线吸尘器',
       price: 4999,
       originalPrice: 5999,
-      image: '🌀',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop',
       rating: 4.8,
       reviews: 1523,
       sales: 8965,
@@ -39,7 +39,7 @@ export default function RecommendedSection() {
       name: '任天堂 Switch OLED 游戏机',
       price: 2599,
       originalPrice: 2799,
-      image: '🎮',
+      image: 'https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=400&h=400&fit=crop',
       rating: 4.9,
       reviews: 5236,
       sales: 32568,
@@ -49,7 +49,7 @@ export default function RecommendedSection() {
       name: 'SK-II 神仙水精华液 230ml',
       price: 1590,
       originalPrice: 1890,
-      image: '💧',
+      image: 'https://images.unsplash.com/photo-1570194065650-d99fb4ee8e39?w=400&h=400&fit=crop',
       rating: 4.7,
       reviews: 8569,
       sales: 56234,
@@ -79,8 +79,13 @@ export default function RecommendedSection() {
             className="bg-base-50 rounded-xl p-4 hover:shadow-md transition-shadow"
           >
             {/* 商品图片 */}
-            <div className="aspect-square bg-base-200 rounded-lg flex items-center justify-center text-5xl mb-3">
-              {product.image}
+            <div className="aspect-square bg-base-200 rounded-lg mb-3 overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
 
             {/* 商品名称 */}

@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Crown, Ticket, FileText, Heart } from 'lucide-react';
-import { useAuthStore } from '../../../stores/authStore';
+import { getToken } from '../../../utils/Token';
+// import { useAuthStore } from '../../../stores/authStore';
 
 export default function UserActionBar() {
-  const { isLoggedIn, user, logout } = useAuthStore();
+  // const { isLoggedIn, user, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const actions = [
-    { icon: Crown, name: '会员中心', path: '/vip' },
+    { icon: Crown, name: '会员中心', path: '/user' },
     { icon: Ticket, name: '优惠券', path: '/coupons' },
     { icon: FileText, name: '我的订单', path: '/order' },
     { icon: Heart, name: '我的收藏', path: '/favorites', badge: 2 },
@@ -20,16 +21,17 @@ export default function UserActionBar() {
         <div className="w-16 h-16 bg-base-200 rounded-full flex items-center justify-center mb-3">
           <User size={40} className="text-base-content/40" />
         </div>
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? (
           <div>
             <p className="text-base-content font-medium">Hi，{user?.nickname}</p>
             <button onClick={logout} className="text-xs text-primary hover:underline mt-1">
               退出登录
             </button>
           </div>
-        ) : (
-          <div>
-            <p className="text-base-content/70 mb-3">Hi，欢迎来到米米乐</p>
+        ) : ( */}
+        <div>
+          <p className="text-base-content/70 mb-3">Hi，欢迎来到米米乐</p>
+          {!getToken() && (
             <div className="flex gap-3">
               <button onClick={() => navigate('/login')} className="btn btn-primary btn-sm px-6">
                 登录
@@ -38,8 +40,9 @@ export default function UserActionBar() {
                 注册
               </button>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+        {/* )} */}
       </div>
 
       {/* 操作菜单 */}

@@ -18,37 +18,37 @@ export default function FlashSaleSection() {
       name: '小米14 Ultra 手机',
       originalPrice: 6999,
       salePrice: 5999,
-      image: '📱',
+      image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
       sold: 85,
       total: 100,
     },
-    // {
-    //   id: '2',
-    //   name: 'MacBook Pro 14',
-    //   originalPrice: 14999,
-    //   salePrice: 12999,
-    //   image: '💻',
-    //   sold: 60,
-    //   total: 100,
-    // },
-    // {
-    //   id: '3',
-    //   name: 'AirPods Pro 2',
-    //   originalPrice: 1899,
-    //   salePrice: 1499,
-    //   image: '🎧',
-    //   sold: 92,
-    //   total: 100,
-    // },
-    // {
-    //   id: '4',
-    //   name: 'iPad Air 5',
-    //   originalPrice: 4799,
-    //   salePrice: 3999,
-    //   image: '📱',
-    //   sold: 75,
-    //   total: 100,
-    // },
+    {
+      id: '2',
+      name: 'MacBook Pro 14',
+      originalPrice: 14999,
+      salePrice: 12999,
+      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca4?w=400&h=400&fit=crop',
+      sold: 60,
+      total: 100,
+    },
+    {
+      id: '3',
+      name: 'AirPods Pro 2',
+      originalPrice: 1899,
+      salePrice: 1499,
+      image: 'https://images.unsplash.com/photo-1608156639581-9b5e7dfd3028?w=400&h=400&fit=crop',
+      sold: 92,
+      total: 100,
+    },
+    {
+      id: '4',
+      name: 'iPad Air 5',
+      originalPrice: 4799,
+      salePrice: 3999,
+      image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop',
+      sold: 75,
+      total: 100,
+    },
   ];
 
   return (
@@ -77,8 +77,13 @@ export default function FlashSaleSection() {
               className="bg-base-50 rounded-xl p-3 hover:shadow-md transition-shadow"
             >
               {/* 商品图片 */}
-              <div className="aspect-square bg-base-200 rounded-lg flex items-center justify-center text-4xl mb-3">
-                {product.image}
+              <div className="aspect-square bg-base-200 rounded-lg mb-3 overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
 
               {/* 商品名称 */}

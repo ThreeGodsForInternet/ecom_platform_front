@@ -5,18 +5,17 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-
+import { getToken, removeToken } from './Token';
 // 定义响应数据类型
 export interface ApiResponse<T = any> {
   code: number;
   message: string;
   data: T;
-  success: boolean;
 }
 
 // 创建 axios 实例
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
@@ -26,8 +25,7 @@ const instance: AxiosInstance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 从 localStorage 获取 token
-    const token = localStorage.getItem('token');
+    const token = getToken();
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -42,19 +40,18 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>) => {
-    const { code, message, data, success } = response.data;
-
-    if (success || code === 200) {
+    const { code, message } = response.data;
+    if (message === 'success' || code === 200) {
       return response;
     } else {
       // 统一错误提示
       console.error('响应错误:', message);
 
-      // 处理常见错误码
+      // 处理常见业务错误码
       switch (code) {
         case 401:
-          // 未登录，跳转到登录页
-          localStorage.removeItem('token');
+          // 业务状态码 401：token 无效或过期
+          removeToken();
           window.location.href = '/login';
           break;
         case 403:
@@ -74,8 +71,29 @@ instance.interceptors.response.use(
     }
   },
   (error) => {
+    // 处理 HTTP 状态码错误
+    if (error.response) {
+      const httpStatus = error.response.status;
+      switch (httpStatus) {
+        case 401:
+          // HTTP 401：未授权
+          removeToken();
+          break;
+        case 403:
+          console.error('没有权限访问该资源');
+          break;
+        case 404:
+          console.error('接口不存在');
+          break;
+        case 500:
+          console.error('服务器内部错误，请稍后重试');
+          break;
+        default:
+          console.error(`请求失败: ${error.response.data?.message || error.message}`);
+      }
+    }
     // 网络错误或超时等处理
-    if (error.message.includes('timeout')) {
+    else if (error.message.includes('timeout')) {
       console.error('请求超时，请稍后重试');
     } else if (error.message.includes('Network')) {
       console.error('网络异常，请检查网络连接');
